@@ -19,8 +19,8 @@ public class SearchResult {
 	private ServicePage servicePage;
 	private VendorsPage vendorsPage;
 	
-	@Given("User navigate to Aytra Public marketplace")
-	public void user_navigate_to_aytra_public_marketplace() {
+	@Given("User navigate to search bar page")
+	public void user_navigate_to_search_bar_page() {
 		driver = DriverFactory.getDriver();
 		homePage = new HomePage(driver);
 	}
@@ -38,10 +38,15 @@ public class SearchResult {
 	@And("User enter the any service name in the search field and enter")
 	public void user_enter_the_any_service_name_in_the_search_field_and_enter() {
 		homePage.searchbar.sendKeys("rob");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		homePage.autoSuggestionWithServicePage();
 		
-		driver = DriverFactory.getDriver();
-		servicePage = new ServicePage(driver);
+//		driver = DriverFactory.getDriver();
+//		servicePage = new ServicePage(driver);
 	}
 
 	@Then("The search result succesfully navigate to that particular service")
@@ -61,10 +66,15 @@ public class SearchResult {
 	@And("User enter the any vendor name in the search field and enter")
 	public void user_enter_the_any_vendor_name_in_the_search_field_and_enter() {
 		homePage.searchbar.sendKeys("su");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		homePage.autoSuggestionWithVendorsPage();
 		
-		driver = DriverFactory.getDriver();
-		vendorsPage = new VendorsPage(driver);
+//		driver = DriverFactory.getDriver();
+//		vendorsPage = new VendorsPage(driver);
 	}
 
 	@Then("The search result succesfully navigate to that particular vendor")

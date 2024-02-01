@@ -1,7 +1,7 @@
 Feature: search fuctionality
 
   Background: 
-    Given User navigate to Aytra Public marketplace
+    Given User navigate to search bar page
 
   Scenario: User search anything for services category
     When User click the search bar dropdown
@@ -14,3 +14,4 @@ Feature: search fuctionality
     And User select the search category as vendors
     And User enter the any vendor name in the search field and enter
     Then The search result succesfully navigate to that particular vendor
+    
