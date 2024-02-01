@@ -39,7 +39,7 @@ public class SearchResult {
 	public void user_enter_the_any_service_name_in_the_search_field_and_enter() {
 		homePage.searchbar.sendKeys("rob");
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +67,7 @@ public class SearchResult {
 	public void user_enter_the_any_vendor_name_in_the_search_field_and_enter() {
 		homePage.searchbar.sendKeys("su");
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
