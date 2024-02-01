@@ -7,22 +7,22 @@ import org.openqa.selenium.support.PageFactory;
 
 import utility.ElementUtils;
 
-public class VendorsPage {
+public class VendorPage {
 	
 	WebDriver driver;
 	private ElementUtils elementUtils;
 	
-	public  VendorsPage(WebDriver driver) {
+	public  VendorPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		elementUtils = new ElementUtils(driver);
 	}
 	
-	@FindBy(xpath = "(//p[text()='Vendors'])[1]")
-	private WebElement vendorsPageTitle;
-			
-	public boolean displayrVendorsPageTitle() {
-		return elementUtils.visibleTextFromElement(vendorsPageTitle, 10);
+	@FindBy(xpath = "//p[text()='Super Vendors']")
+	private WebElement superVendorsTitle;
+	
+	public String displaySuperVendorsTitle() {
+		return elementUtils.getTextFromElement(superVendorsTitle, 10);
 	}
 
 }

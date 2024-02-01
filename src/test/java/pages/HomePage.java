@@ -47,7 +47,7 @@ public class HomePage {
 	
 	public ServicesProvidersPage clickOnServicesProviders() {
 		elementUtils.clickOnElement(serviceProvidersNavLink, 10);
-		return new ServicesProvidersPage();
+		return new ServicesProvidersPage(driver);
 	}
 	
 	@FindBy(xpath = "(//button[text()='Dashboard'])[1]")
@@ -90,6 +90,13 @@ public class HomePage {
 	
 	public void selectVendorInDropdown() {
 		elementUtils.clickOnElement(vendorOption, 10);
+	}
+	
+	@FindBy(tagName = "embed")
+	public WebElement youtubePlay;
+	 
+	public void scrollDownToYoutube() {
+		elementUtils.javascriptScrollIntoElement(youtubePlay, 10);
 	}
 
 }

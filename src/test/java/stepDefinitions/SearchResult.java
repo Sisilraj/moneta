@@ -10,14 +10,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.ServicePage;
-import pages.VendorsPage;
+import pages.VendorPage;
 
 public class SearchResult {
 	
 	WebDriver driver;
 	private HomePage homePage;
 	private ServicePage servicePage;
-	private VendorsPage vendorsPage;
+	private VendorPage vendorPage;
 	
 	@Given("User navigate to search bar page")
 	public void user_navigate_to_search_bar_page() {
@@ -79,8 +79,8 @@ public class SearchResult {
 
 	@Then("The search result succesfully navigate to that particular vendor")
 	public void the_search_result_succesfully_navigate_to_that_particular_vendor() {
-		vendorsPage = new VendorsPage(driver);
-		String actualTitle = vendorsPage.displaySuperVendorsTitle();
+		vendorPage = new VendorPage(driver);
+		String actualTitle = vendorPage.displaySuperVendorsTitle();
 		String expectTitle = "Super Vendors";
 		
 		Assert.assertEquals(actualTitle, expectTitle);
