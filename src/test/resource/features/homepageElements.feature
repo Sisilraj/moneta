@@ -20,3 +20,21 @@ Feature: Home page elements fuctionality
     And User should be see vendors/providers company logo
     And User should be see vendor company name
     Then user click on one vendors/providers, that particular vendors/providers navigate to proper vendors/providers page
+
+  Scenario: verify the youtube video play or not in home page
+    When User go to youtube screen place
+    Then User verify that video succesfully playable
+
+  Scenario: Services at navbar and go to services page
+    When User click on the Services at navbar
+    Then The page should be navigate to services page succesfully
+    
+  Scenario: Vendors at navbar and go to Vendors page
+    When User click on the Vendors at navbar
+    Then The page should be navigate to Vendors page succesfully
+    
+  Scenario: Services Providers at navbar and go to Services Providers page
+    When User click on the Services Providers at navbar
+    Then The page should be navigate to Services Providers page succesfully
+    
+  
