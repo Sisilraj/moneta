@@ -1,12 +1,28 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
+
+import factory.DriverFactory;
 import io.cucumber.java.en.*;
+import pages.HomePage;
+import pages.ServicePage;
+import pages.ServicesPage;
 
 public class ServicePageElements {
 	
+	WebDriver driver;
+	private HomePage homePage;
+	private ServicePage servicePage;
+	private ServicesPage servicesPage;
+	
 	@Given("User navigate to service page")
 	public void user_navigate_to_service_page() {
-	    // Write code here
+		driver = DriverFactory.getDriver();
+		homePage = new HomePage(driver);
+		homePage.clickOnServices();
+		servicesPage = new ServicesPage(driver);
+		servicesPage.clickOnFirstService();
+		servicePage = new ServicePage(driver);
 	}
 
 	@When("The blue stripe should display the category name with the respective category icon")

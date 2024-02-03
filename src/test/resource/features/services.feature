@@ -5,7 +5,7 @@ Feature: Services page fuctionality
 
   Scenario: Customer views the service page
     Then the customer should see the services page with a list of available services
-    
+
   Scenario: Customer search for services
     When the customer enters search_text in the search bar with suggestions in the dropdown
     Then the customer can see related services based on the search text
@@ -25,8 +25,14 @@ Feature: Services page fuctionality
   Scenario: Customer views all services and navigates to main categories
     When the customer chooses to all services
     Then the customer should see a list of all available services
-    When the customer navigates to the main categories
-    Then the customer should be able to see the main service categories
+    When the customer choose to Application servers category
+    Then the customer should see a list of Application servers available services
+    When the customer choose to Blockchain category
+    Then the customer should see a list of Blockchain available services
+    When the customer choose to DevOps category
+    Then the customer should see a list of DevOps available services
+    When the customer choose to Business Applications category
+    Then the customer should see a list of Business Applications available services
 
   Scenario: Customer clicks on a service and views the respective service page
     When the customer clicks on a specific service

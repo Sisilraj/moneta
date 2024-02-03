@@ -26,72 +26,72 @@ public class HomePageElements {
 
 	@When("User go to service menu place")
 	public void user_go_to_service_menu_place() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User verify the recommended set of services should be viewed")
 	public void user_verify_the_recommended_set_of_services_should_be_viewed() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true);
 	}
 
 	@And("User verify the services should be filtered according to the selected category tab.")
 	public void user_verify_the_services_should_be_filtered_according_to_the_selected_category_tab() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see proper service image")
 	public void user_should_be_see_proper_service_image() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see service company logo")
 	public void user_should_be_see_service_company_logo() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true);
 	}
 
 	@And("User should be see service name")
 	public void user_should_be_see_service_name() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see proper price range")
 	public void user_should_be_see_proper_price_range() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see any applicable discounts in a service card")
 	public void user_should_be_see_any_applicable_discounts_in_a_service_card() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@Then("user click on one service, that particular service navigate to proper service page")
 	public void user_click_on_one_service_that_particular_service_navigate_to_proper_service_page() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@When("User go to Vendors\\/Providers menu place")
 	public void user_go_to_vendors_providers_menu_place() {
-	    // Write code here
+		Assert.assertFalse("This feature still not implemented in services page", true);
 	}
 
 	@And("User verify the recommended set of vendors\\/providers should be viewed")
 	public void user_verify_the_recommended_set_of_vendors_providers_should_be_viewed() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see vendors\\/providers company logo")
 	public void user_should_be_see_vendors_providers_company_logo() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@And("User should be see vendor company name")
 	public void user_should_be_see_vendor_company_name() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@Then("user click on one vendors\\/providers, that particular vendors\\/providers navigate to proper vendors\\/providers page")
 	public void user_click_on_one_vendors_providers_that_particular_vendors_providers_navigate_to_proper_vendors_providers_page() {
-	    // Write code here 
+		Assert.assertFalse("This feature still not implemented in services page", true); 
 	}
 
 	@When("User go to youtube screen place")
