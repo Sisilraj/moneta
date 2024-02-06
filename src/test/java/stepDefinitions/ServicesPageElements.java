@@ -60,7 +60,7 @@ public class ServicesPageElements {
 
 	@Then("the services should be displayed in the latest order")
 	public void the_services_should_be_displayed_in_the_latest_order() {
-	 //	 Get the list of services
+	 //	Get the list of services
         List<WebElement> servicesList = servicesPage.getAllServices();
         
      // Verify the order of services

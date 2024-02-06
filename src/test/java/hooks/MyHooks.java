@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.asserts.SoftAssert;
 
 import factory.DriverFactory;
 import io.cucumber.java.After;
@@ -15,6 +16,7 @@ import utility.ConfigReader;
 public class MyHooks {
 	
 WebDriver driver;
+SoftAssert softAssert = new SoftAssert();
 	
 	@Before
 	public void setup() {
@@ -25,6 +27,8 @@ WebDriver driver;
 	
 	@After
 	public void teardown(Scenario scenario) {
+		
+		softAssert.assertAll();
 		
 		String scenarioName = scenario.getName().replaceAll(" ", "_");
 		
