@@ -16,7 +16,7 @@ import utility.ConfigReader;
 public class MyHooks {
 	
 WebDriver driver;
-SoftAssert softAssert = new SoftAssert();
+//SoftAssert softAssert = new SoftAssert();
 	
 	@Before
 	public void setup() {
@@ -28,8 +28,6 @@ SoftAssert softAssert = new SoftAssert();
 	@After
 	public void teardown(Scenario scenario) {
 		
-		softAssert.assertAll();
-		
 		String scenarioName = scenario.getName().replaceAll(" ", "_");
 		
 		if(scenario.isFailed()) {
@@ -38,6 +36,8 @@ SoftAssert softAssert = new SoftAssert();
 		}
 		
 		driver.quit();
+		
+		//softAssert.assertAll();
 	}
 
 }

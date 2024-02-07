@@ -5,9 +5,10 @@ import java.util.List;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import utility.ElementUtils;
 
@@ -15,6 +16,8 @@ public class VendorPage {
 	
 	WebDriver driver;
 	private ElementUtils elementUtils;
+	SoftAssert softAssert = new SoftAssert();
+	
 	
 	public  VendorPage(WebDriver driver) {
 		this.driver = driver;
@@ -63,55 +66,48 @@ public class VendorPage {
 	@FindBy(xpath = "(//div[contains(@class,'MuiGrid-root MuiGrid-item')])[3]/div//a")
 	public WebElement socialOptions;
 	
-	public boolean displaySocialOptions() {
-		return elementUtils.visibleTextFromElement(socialOptions, 10);
-	}
-	
 	@FindBy(xpath = "(//div[contains(@class,'MuiGrid-root MuiGrid-item')])[3]/div[2]/div[2]")
 	public WebElement verifiedVendorOptions;
-	
-	public boolean displayVerifiedVendorOptions() {
-		return elementUtils.visibleTextFromElement(verifiedVendorOptions, 10);
-	}
 	
 	@FindBy(xpath = "(//div[contains(@class,'MuiGrid-root MuiGrid-item')])[3]/div[3]/div[2]")
 	public WebElement memberSinceDetails;
 	
-	public boolean displayMemberSinceDetailsOptions() {
-		return elementUtils.visibleTextFromElement(memberSinceDetails, 10);
-	}
-	
 	@FindBy(xpath = "(//div[contains(@class,'MuiGrid-root MuiGrid-item')])[3]/div[3]/div[1]")
 	public WebElement fromCountry;
 	
-	public boolean displayFromCountryOptions() {
-		return elementUtils.visibleTextFromElement(fromCountry, 10);
-	}
+	//Elements are appear at the right position
+	public boolean isOnRightSide(WebElement element) {
+        int windowWidth = driver.manage().window().getSize().getWidth();
+        int elementLocationX = element.getLocation().getX();
+        int elementWidth = element.getSize().getWidth();
+
+        return elementLocationX + elementWidth >= windowWidth;
+    }
 	
 	//Elements are appear at the right position
-	public boolean verifyElementAtRightCorner(WebElement element) {
-        // Get the window width and height
-        int windowWidth = element.getSize().getWidth();
-        int windowHeight = element.getSize().getHeight();
+	public void verifyElementAtRightCorner(WebElement element) {
+		// Get the window width
+        int windowWidth = driver.manage().window().getSize().getWidth();
 
-        // Calculate the position of the right corner
-        int xOffset = windowWidth - element.getSize().getWidth();
-        int yOffset = windowHeight - element.getSize().getHeight();
+        // Get the element's X position
+        int elementX = element.getLocation().getX();
 
-        // Use Actions class to move the element to the right corner
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element, xOffset, yOffset).build().perform();
-
-        // Verify the element's position
-        int actualX = element.getLocation().getX();
-        int actualY = element.getLocation().getY();
-
-        if (actualX == xOffset && actualY == yOffset) {
-            System.out.println("Element is at the right corner.");
-        } else {
-            System.out.println("Element is not at the right corner.");
-        }
-		return false;
+        // Calculate the right side of the page
+        int rightSide = windowWidth - element.getSize().getWidth();
+        
+        // Assert that the element is at the right side of the page
+        if(element == socialOptions){			
+			Assert.assertTrue(elementX >= rightSide, "social options is not at the right side of the page");
+			
+		}else if(element == verifiedVendorOptions){
+			Assert.assertTrue(elementX >= rightSide, "verified Vendor options is not appear in right corner");
+			
+		}else if(element == memberSinceDetails){
+			Assert.assertTrue(elementX >= rightSide, "member since details is not appear in right corner");
+			
+		}else if(element == fromCountry){
+			Assert.assertTrue(elementX >= rightSide, "from country option is not appear in right corner");
+		}
 	}    
 	
 	//service category section
@@ -156,10 +152,9 @@ public class VendorPage {
 	private WebElement phoneHeading;
 	
 	public boolean displayPhoneNumber() {
-		if(phoneNumber.getText() == "7939335218" && phoneHeading.getText() == "Phone Number") {
+		if(phoneNumber.getText() == "7939335218" && phoneHeading.getText() == "Phone Number Specially for Aytra marketplace") {
 			System.out.println("Phone number and Phone number heading are correct");
-		}else {
-			System.out.println("Phone number and Phone number heading are not correct");
+			return true;
 		}
 		return false;
 	}
@@ -171,10 +166,9 @@ public class VendorPage {
 	private WebElement emailHeading;
 	
 	public boolean displayEmail() {
-		if(email.getText() == "shauom@yahoo.com" && email.getText() == "Direct email contact.") {
+		if(email.getText() == "shauom@yahoo.com" && emailHeading.getText() == "Direct email contact. Specially for Aytra marketplace") {
 			System.out.println("Email and email heading are correct");
-		}else {
-			System.out.println("Email and email heading are not correct");
+			return true;
 		}
 		return false;
 	}
@@ -188,8 +182,7 @@ public class VendorPage {
 	public boolean displayWebsite() {
 		if(website.getText() == "https://www.moneta.lk" && websiteHeading.getText() == "Website") {
 			System.out.println("website and website heading are correct");
-		}else {
-			System.out.println("website and website heading are not correct");
+			return true;
 		}
 		return false;
 	}
@@ -204,10 +197,9 @@ public class VendorPage {
 		List<WebElement> socialMediaOptions = socialPages;
 		
 		for(WebElement socialMediaOption : socialMediaOptions) {
-			if(socialMediaOption.isDisplayed() && socialPageHeadings.getText() == "Social Pages") {
+			if(socialMediaOption.isDisplayed() == true && socialPageHeadings.getText() == "Social Pages") {
 				System.out.println("socialMediaOptions icon and socialPages heading are correct");
-			}else {
-				System.out.println("socialMediaOptions icon and socialPages heading are not correct");
+				return true;
 			}
 		}
 		return false;

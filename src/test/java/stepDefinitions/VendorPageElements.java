@@ -15,19 +15,19 @@ import pages.HomePage;
 import pages.VendorPage;
 import pages.VendorsPage;
 
-public class VendorPageElements {
+public class VendorPageElements{
 
 	WebDriver driver;
 	private HomePage homePage;
 	private VendorsPage vendorsPage;
 	private VendorPage vendorPage;
-
-	SoftAssert softAssert = new SoftAssert();
+	private SoftAssert softAssert;
 
 	@Given("the customer is on the Vendor company profile page")
 	public void the_customer_is_on_the_vendor_company_profile_page() {
 		driver = DriverFactory.getDriver();
-
+		softAssert = new SoftAssert();
+		
 		homePage = new HomePage(driver);
 		homePage.clickOnVendors();
 
@@ -76,16 +76,18 @@ public class VendorPageElements {
 
 	@And("the social handles, contact options, country, and member since details should be in the right corner")
 	public void the_social_handles_contact_options_country_and_member_since_details_should_be_in_the_right_corner() {
-		if(vendorPage.verifyElementAtRightCorner(vendorPage.socialOptions) &&
-			vendorPage.verifyElementAtRightCorner(vendorPage.verifiedVendorOptions) &&
-			 vendorPage.verifyElementAtRightCorner(vendorPage.memberSinceDetails) &&
-			  vendorPage.verifyElementAtRightCorner(vendorPage.fromCountry)){
-			
-			softAssert.assertTrue(true, "The social handles, contact options, country, and member since details are in the right corner");
-			
-		}else {
-			softAssert.assertFalse(true, "country option is not appear in right corner");
-		}
+		/*
+		vendorPage.verifyElementAtRightCorner(vendorPage.socialOptions);
+		vendorPage.verifyElementAtRightCorner(vendorPage.verifiedVendorOptions);
+		vendorPage.verifyElementAtRightCorner(vendorPage.memberSinceDetails);
+		vendorPage.verifyElementAtRightCorner(vendorPage.fromCountry);
+		*/
+		
+		// Verify each element appears on the right side
+		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.socialOptions), "social options is not at the right side of the page");
+		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.verifiedVendorOptions), "verified Vendor options is not appear in right corner");
+		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.memberSinceDetails), "member since details is not appear in right corner");
+		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.fromCountry), "from country option is not appear in right corner");		
 	}
 
 	@When("the customer looks at the service categories section")
@@ -225,5 +227,5 @@ public class VendorPageElements {
 	public void the_customer_should_be_able_to_view_the_description_of_the_experience() {
 		softAssert.assertFalse(true, "This feature still not implemented in services page");
 	}
-
 }
+
