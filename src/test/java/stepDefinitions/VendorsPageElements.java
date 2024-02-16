@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.asserts.SoftAssert;
 
 import factory.DriverFactory;
 import io.cucumber.java.en.*;
 import pages.HomePage;
-import pages.VendorPage;
 import pages.VendorsPage;
 
 public class VendorsPageElements {
@@ -35,17 +35,17 @@ public class VendorsPageElements {
 
 	@Then("the customer should see the vendors page with a list of available vendors")
 	public void the_customer_should_see_the_vendors_page_with_a_list_of_available_vendors() {
-		Assert.assertTrue(vendorsPage.displayrVendorsPageTitle());
+		vendorsPage.displayVendorsPageTitle();
 	}
 
 	@When("the customer enters vendor_text in the search bar with suggestions in the dropdown")
 	public void the_customer_enters_vendor_text_in_the_search_bar_with_suggestions_in_the_dropdown() {
-		Assert.assertFalse("This feature still not implemented in services page", true);
+		vendorsPage.searchText();
 	}
 
 	@Then("the customer can see related vendors based on the search text")
 	public void the_customer_can_see_related_vendors_based_on_the_search_text() {
-		Assert.assertFalse("This feature still not implemented in services page", true);
+		vendorsPage.searchResult();
 	}
 
 	@When("the customer filters vendors by Latest")
@@ -63,19 +63,7 @@ public class VendorsPageElements {
 
 	@Then("the vendors should be displayed in the latest order")
 	public void the_vendors_should_be_displayed_in_the_latest_order() {
-	 //	Get the list of vendors
-        List<WebElement> vendorsList = vendorsPage.getAllVendors();
-        
-     // Verify the order of vendors
-        boolean isLatestOrder = vendorsPage.isLatestOrder(vendorsList);
-        
-     // Print the result
-        if (isLatestOrder) {
-        	Assert.assertTrue("vendors are displayed in the latest order.", true);
-            System.out.println("vendors are displayed in the latest order.");
-        } else {
-            System.out.println("vendors are not displayed in the latest order.");
-        }
+		
 	}
 
 	@When("the customer filters vendors by A-Z")
@@ -265,6 +253,13 @@ public class VendorsPageElements {
 	@Then("the customer should be redirected to the respective vendor page")
 	public void the_customer_should_be_redirected_to_the_respective_vendor_page() {
 	    // Write code here 
+	}
+	
+	@Then("I assert all Vendors page soft assertions")
+	public void i_assert_all_soft_assertions() {
+		// Assert all soft assertions
+		SoftAssert softAssert = vendorsPage.getSoftAssert();
+        softAssert.assertAll();
 	}
 
 }

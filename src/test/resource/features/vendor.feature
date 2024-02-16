@@ -25,3 +25,4 @@ Feature: View Vendor Company Profile
     Then the customer should be see all Experiences
     When the customer expands an experience
     Then the customer should be able to view the description of the experience
+    Then I assert all Vendor page soft assertions

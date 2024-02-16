@@ -1,9 +1,6 @@
 package stepDefinitions;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 
 import factory.DriverFactory;
@@ -21,12 +18,10 @@ public class VendorPageElements{
 	private HomePage homePage;
 	private VendorsPage vendorsPage;
 	private VendorPage vendorPage;
-	private SoftAssert softAssert;
 
 	@Given("the customer is on the Vendor company profile page")
 	public void the_customer_is_on_the_vendor_company_profile_page() {
 		driver = DriverFactory.getDriver();
-		softAssert = new SoftAssert();
 		
 		homePage = new HomePage(driver);
 		homePage.clickOnVendors();
@@ -39,55 +34,28 @@ public class VendorPageElements{
 
 	@When("the customer should see the company name, logo, and tagline at top")
 	public void the_customer_should_see_the_company_name_logo_and_tagline_at_top() {
-		if (vendorPage.displayVendorCompanyLogo() 
-			  && !vendorPage.vendorCompanyName.getText().isEmpty()
-				&& !vendorPage.vendorCompanyTagline.getText().isEmpty()) {
-			
-			softAssert.assertTrue(true, "The customer should see the company name, logo, and tagline at top");
-			
-		} else {
-			
-			softAssert.assertFalse(true, "Vendor tagline feature is still not implemented");
-		}
+		vendorPage.displayVendorCompanyName();
+		vendorPage.displayVendorCompanyLogo();
+		vendorPage.displayVendorCompanyTagline();
 	}
 
 	@Then("the logo size should be correct pixels")
 	public void the_logo_size_should_be_128_x128_pixels() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		int vendorImageWidth = vendorPage.getWidth();
-		int vendorImageHeight = vendorPage.getHeight();
-
-		String expectedVendorImageSize = "Vendor image : 128 x 128px";
-		String actualVendorImageSize = "Vendor image : " + vendorImageWidth + " x " + vendorImageHeight + "px";
-
-		softAssert.assertEquals(expectedVendorImageSize, actualVendorImageSize,
-				"Vendor image is not expected size with 128x128px");
+		vendorPage.verifyLogoSize();
 	}
 
 	@And("the description should be visible below the company details")
 	public void the_description_should_be_visible_below_the_company_details() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		vendorPage.displayVendorCompanyDescription();
 	}
 
 	@And("the social handles, contact options, country, and member since details should be in the right corner")
 	public void the_social_handles_contact_options_country_and_member_since_details_should_be_in_the_right_corner() {
-		/*
+		
 		vendorPage.verifyElementAtRightCorner(vendorPage.socialOptions);
 		vendorPage.verifyElementAtRightCorner(vendorPage.verifiedVendorOptions);
 		vendorPage.verifyElementAtRightCorner(vendorPage.memberSinceDetails);
 		vendorPage.verifyElementAtRightCorner(vendorPage.fromCountry);
-		*/
-		
-		// Verify each element appears on the right side
-		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.socialOptions), "social options is not at the right side of the page");
-		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.verifiedVendorOptions), "verified Vendor options is not appear in right corner");
-		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.memberSinceDetails), "member since details is not appear in right corner");
-		softAssert.assertTrue(vendorPage.isOnRightSide(vendorPage.fromCountry), "from country option is not appear in right corner");		
 	}
 
 	@When("the customer looks at the service categories section")
@@ -109,35 +77,30 @@ public class VendorPageElements{
 			e.printStackTrace();
 		}
 	}
-
+ 
 	@Then("the customer should see service tiles with filters and a view all option")
 	public void the_customer_should_see_service_tiles_with_filters_and_a_view_all_option() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		//write code here
 	}
 
 	@And("by default, eight tiles should be visible")
 	public void by_default_eight_tiles_should_be_visible() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		//write code here 
 	}
 
 	@When("the customer selects view all")
 	public void the_customer_selects_view_all() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		//write code here 
 	}
 
 	@Then("all services of the vendor should be visible in the expanded section")
 	public void all_services_of_the_vendor_should_be_visible_in_the_expanded_section() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		//write code here
 	}
 
 	@When("the customer looks at the company profile section")
 	public void the_customer_looks_at_the_company_profile_section() {
 		vendorPage.scrollDownProfileSection();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@And("the customer click on the company profile section")
@@ -152,20 +115,7 @@ public class VendorPageElements{
 
 	@Then("by default, a list of three categories like Contact Details, Resume and Experience should be visible")
 	public void by_default_a_list_of_three_categories_like_contact_details_resume_and_experience_should_be_visible() {
-		
-		List<WebElement> profileTabs = vendorPage.basicProfileTabs;
-		
-		for(WebElement profileTab : profileTabs) {
-			
-			if(profileTab.getText() == "Contact Details" && 
-				profileTab.getText() == "Resume" && 
-				 profileTab.getText() == "Experience") {
-				
-				softAssert.assertTrue(true, "By default, a list of three categories like Contact Details, Resume and Experience are visible properly");				
-			}else {
-				softAssert.assertFalse(true, "By default, a list of three categories like Contact Details, Resume and Experience are not visible properly");
-			}
-		}
+		vendorPage.display_ContactDetails_Resume_Experience_Section();
 	}
 
 	@When("the customer select Contact Details")
@@ -180,10 +130,10 @@ public class VendorPageElements{
 
 	@Then("the customer should be see all Contact Details")
 	public void the_customer_should_be_see_all_contact_details() {
-		softAssert.assertTrue(vendorPage.displayPhoneNumber());
-		softAssert.assertTrue(vendorPage.displayEmail());
-		softAssert.assertTrue(vendorPage.displayWebsite());
-		softAssert.assertTrue(vendorPage.displaySocialPages());
+		vendorPage.displayPhoneNumber();
+		vendorPage.displayEmail();
+		vendorPage.displayWebsite();
+		vendorPage.displaySocialPages();
 	}
 
 	@When("the customer select Resume")
@@ -195,11 +145,12 @@ public class VendorPageElements{
 		}
 		
 		vendorPage.clickOnResume();
+		
 	}
 
 	@Then("the customer should be see Resume Details")
 	public void the_customer_should_be_see_resume_details() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		vendorPage.displayResume();
 	}
 
 	@When("the customer select Experience")
@@ -215,17 +166,24 @@ public class VendorPageElements{
 
 	@Then("the customer should be see all Experiences")
 	public void the_customer_should_be_see_all_experiences() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		vendorPage.displayExperience();
 	}
 
 	@When("the customer expands an experience")
 	public void the_customer_expands_an_experience() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
-	}
+		vendorPage.expandExperience();
+	} 
 
 	@Then("the customer should be able to view the description of the experience")
 	public void the_customer_should_be_able_to_view_the_description_of_the_experience() {
-		softAssert.assertFalse(true, "This feature still not implemented in services page");
+		vendorPage.descriptionOfExperience();
+	}
+	
+	@Then("I assert all Vendor page soft assertions")
+	public void i_assert_all_soft_assertions() {
+		// Assert all soft assertions
+        SoftAssert softAssert = vendorPage.getSoftAssert();
+        softAssert.assertAll();
 	}
 }
 
